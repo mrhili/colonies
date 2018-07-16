@@ -1,0 +1,91 @@
+title = "associations"
+url = "/associations/:page?"
+layout = "cards"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/associations"
+
+
+==
+
+<?
+
+    use Mrhili\Asociations\Models\Association;
+
+    function onStart(){
+
+        $this['associations'] = Association::where('confirmed', true)->paginate(12);
+
+    }
+
+?>
+
+==
+
+
+        
+        <div class="jumbotron">
+          <h1 class="display-4">جميع الجمعيات الموجودة في الموقع</h1>
+          <hr class="my-4">
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/new-assoc" role="button">إضافة جمعية</a>
+          </p>
+        </div>
+   
+        <!--Second row-->
+        <div class="row mt-5 pt-4">
+            {% for record in associations %}
+            <!--First columnn-->
+            <div class="col-lg-4">
+                <!--Card-->
+                <div class="card mb-r wow fadeIn" data-wow-delay="0.2s">
+
+                    <!--Card image-->
+                    <img class="img-fluid" src="{% if record.logo%}{{ record.logo.thumb(200,auto) }}{% else %}{{'assets/images/no-img.png'|theme}}{% endif%}" alt="Card image cap">
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">
+                            <strong>{{ record.name }}</strong>
+                        </h4>
+                        <!--Text-->
+                        <p class="card-text">{{ html_limit(record.domaine , 180)|raw }} ...</p>
+
+                        {# Use spaceless tag to remove spaces inside the A tag. #}
+                        {% spaceless %}
+                                <a class="btn btn-blue-grey btn-md" href="/association/{{ record.slug }}">
+                                More
+                                </a>
+                        {% endspaceless %}
+                    </div>
+
+                </div>
+                <!--/.Card-->
+            </div>
+            <!--First columnn-->
+
+
+
+
+
+
+
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                لايوجد
+                </div>
+
+
+            {% endfor %}
+        </div>
+
+
+
+{% if associations.render %}
+<nav>
+    {{ associations.render|raw}}
+</nav>
+
+{% endif %}

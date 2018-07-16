@@ -1,0 +1,58 @@
+fields:
+    logo:
+        label: Logo
+        mode: image
+        imageWidth: '300'
+        imageHeight: '300'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload
+    name:
+        label: 'Nom d''association'
+        span: auto
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text
+    domaine:
+        label: Domaine
+        size: ''
+        span: full
+        type: richeditor
+    region:
+        label: Region
+        span: auto
+        type: text
+    city:
+        label: Ville
+        span: auto
+        type: text
+    adresse:
+        label: Adresse
+        span: full
+        type: text
+    tel:
+        label: Téléphone
+        span: auto
+        type: text
+    email:
+        label: Text
+        span: auto
+        type: text
+    workers:
+        label: Workers
+        span: auto
+        nameFrom: last_name
+        descriptionFrom: las_name
+        type: relation
+    confirmed:
+        label: Switch
+        span: auto
+        type: switch

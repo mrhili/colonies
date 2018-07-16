@@ -1,0 +1,4 @@
+title: Movies
+modelClass: Mrhili\Asociations\Models\Association
+toolbar:
+    buttons: reorder_toolbar

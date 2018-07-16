@@ -1,0 +1,244 @@
+title = "association"
+url = "/association/:slug"
+layout = "basicLandingPage"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Mrhili\Asociations\Models\Association"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "domaine"
+notFoundMessage = "لا يوجد"
+
+[viewBag]
+localeUrl[en] = "/association"
+==
+
+{% if record %}
+
+<!--Intro Section-->
+<section class="view intro-1 hm-black-slight" style="background: url('{{'assets/images/people.jpg'|theme}}')no-repeat center center; background-size: cover;">
+    <div class="full-bg-img flex-center">
+        <div class="container">
+            <ul>
+
+                <li class="text-center">
+                	{% if record.logo %}<img class="img-thumbnail wow fadeInDown" src="{{ record.logo.thumb(80,80) }}" />{% endif %}
+                    <h1 class="display-3 font-bold wow fadeInDown text-dark" data-wow-delay="0.2s">{{ record.name }}</h1>
+                </li>
+                <!--<li>
+                    <h4 class="mt-4 mb-5 wow fadeInDown text-secondary">...</h4>
+                </li>-->
+                <li>
+                    
+                    <a target="_blank" href="/new-cadr" class="btn btn-outline-primary btn-lg wow fadeInRight"
+                        data-wow-delay="0.2s"> إضافة عضو</a>
+                    <a target="_blank" href="/new-event" class="btn btn-indigo btn-lg wow fadeInLeft" data-wow-delay="0.2s"
+                        rel="nofollow">إضاقة حدث</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<!-- Main container-->
+<div class="container">
+
+
+    <div class="divider-new pt-5">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn" data-wow-delay="0.2s">
+            <strong>مجالات الجمعية</strong>
+        </h2>
+    </div>
+    <!--Section: About-->
+    <section id="about" class="text-center wow fadeIn" data-wow-delay="0.2s">
+{{ record.domaine|raw }}
+    </section>
+    <!--Section: About-->
+
+
+    <div class="divider-new pt-5">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn">الأعضاء</h2>
+    </div>
+
+
+
+
+
+
+    <!--Section: Best features-->
+    <section id="best-features">
+
+        <div class="row pt-3">
+	{% for worker in record.workers %}
+            <div class="col-lg-3 mb-r">
+                <a href="/cadre/{{ record.id }}">
+                    <!--Card-->
+                    <div class="card hoverable wow fadeIn">
+
+                        <!--Card image-->
+                        <img class="img-fluid"
+                        	src="{% if worker.avatar %}{{ worker.avatar.thumb(200,auto) }}{% else %}{{'assets/images/no-img.png'|theme}}{% endif%}"
+                             alt="Card image cap">
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title text-center">{{ worker.name }} {{ worker.last_name }}</h4>
+
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+                    </a>
+            </div>
+
+	{% endfor %}
+        </div>
+
+    </section>
+    <!--/Section: Best features-->
+
+
+
+
+
+    <div class="divider-new pt-5">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn">الأحداث</h2>
+    </div>
+
+    <!--Section: Best features-->
+    <section id="best-features">
+
+        <div class="row pt-3">
+	{% for event in record.events %}
+            <div class="col-lg-3 mb-r">
+                <a href="/event/{{ event.slug }}">
+                    <!--Card-->
+                    <div class="card hoverable wow fadeIn">
+
+                        <!--Card image-->
+                        <img class="img-fluid"
+                             src="{% if event.poster %}{{ event.poster.thumb(200,auto) }}{% else %}{{'assets/images/no-img.png'|theme}}{% endif%}"
+                             alt="Card image cap">
+
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title text-center">{{ event.name }}</h4>
+                            <hr>
+                            <!--Text-->
+                            <p class="card-text">{{ event.adress }}</p>
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+                    </a>
+            </div>
+
+	{% endfor %}
+        </div>
+
+    </section>
+    <!--/Section: Best features-->
+
+
+
+
+    <div class="divider-new">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold  wow fadeIn">معلومات إضافية</h2>
+    </div>
+
+    <!--Section: Contact-->
+    <section id="contact pb-5">
+        <div class="row">
+            <!--First column-->
+            <div class="col-md-8 mb-5">
+                <div class="embed-responsive embed-responsive-16by9 z-depth-1 wow fadeIn">
+                    <div id="map" style=""></div>
+                </div>
+            </div>
+            <!--/First column-->
+
+            <!--Second column-->
+            <div class="col-md-4">
+                <ul class="text-center list-unstyled">
+                    <li class="wow fadeIn" data-wow-delay="0.2s">
+                        <i class="fa fa-map-marker indigo-text fa-2x"></i>
+                        <p>{{ record.adresse }}</p>
+                    </li>
+
+                    <li class="wow fadeIn mt-5 pt-2" data-wow-delay="0.3s">
+                        <i class="fa fa-phone indigo-text fa-2x"></i>
+                        <p>{{ record.tel }}</p>
+                    </li>
+
+                    <li class="wow fadeIn mt-5 pt-2" data-wow-delay="0.4s">
+                        <i class="fa fa-envelope indigo-text fa-2x"></i>
+                        <p>{{ record.email }}</p>
+                    </li>
+                </ul>
+            </div>
+            <!--/Second column-->
+        </div>
+    </section>
+    <!--Section: Contact-->
+</div>
+<!--/ Main container-->
+
+
+
+
+
+<script>
+function myMap() {
+var mapOptions = {
+    center: new google.maps.LatLng(51.5, -0.12),
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+}
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+
+
+
+
+
+
+
+
+    
+{% else %}
+
+<!--Intro Section-->
+<section class="view intro-1 hm-black-slight" style="background: url('https://mdbootstrap.com/img/Photos/Others/images/59.jpg')no-repeat center center; background-size: cover;">
+    <div class="full-bg-img flex-center">
+        <div class="container">
+            <ul>
+                <li>
+                    <h1 class="display-3 font-bold wow fadeInDown" data-wow-delay="0.2s">{{ notFoundMessage }}</h1>
+                </li>
+                <li>
+                    <h4 class="mt-4 mb-5 wow fadeInDown">Digital advertising agency focused on today's consumers</h4>
+                </li>
+                <li>
+                    <a target="_blank" href="{{ btn1Link }}" class="btn btn-indigo btn-lg wow fadeInLeft" data-wow-delay="0.2s"
+                        rel="nofollow">LEARN MORE</a>
+                    <a target="_blank" href="{{ btn2Link }}" class="btn btn-outline-white btn-lg wow fadeInRight"
+                        data-wow-delay="0.2s" rel="nofollow"> S  UP</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+{% endif %}

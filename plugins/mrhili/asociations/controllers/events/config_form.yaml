@@ -1,0 +1,10 @@
+name: Events
+form: $/mrhili/asociations/models/event/fields.yaml
+modelClass: Mrhili\Asociations\Models\Event
+defaultRedirect: mrhili/asociations/events
+create:
+    redirect: 'mrhili/asociations/events/update/:id'
+    redirectClose: mrhili/asociations/events
+update:
+    redirect: mrhili/asociations/events
+    redirectClose: mrhili/asociations/events

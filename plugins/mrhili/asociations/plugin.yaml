@@ -1,0 +1,23 @@
+plugin:
+    name: 'mrhili.asociations::lang.plugin.name'
+    description: 'mrhili.asociations::lang.plugin.description'
+    author: mrhili
+    icon: oc-icon-bullhorn
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Associations
+        url: mrhili/asociations/movies
+        icon: icon-bullhorn
+    main-menu-item2:
+        label: Evenement
+        url: mrhili/asociations/events
+        icon: icon-play
+    main-menu-item3:
+        label: Cadre
+        url: mrhili/asociations/workers
+        icon: icon-user
+    main-menu-item4:
+        label: Kafa2a
+        url: mrhili/asociations/kafa2a
+        icon: icon-fighter-jet

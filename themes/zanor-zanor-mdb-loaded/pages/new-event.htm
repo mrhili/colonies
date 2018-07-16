@@ -1,0 +1,32 @@
+title = "new-event"
+url = "/new-event"
+layout = "noSidebar"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/new-event"
+
+[new_event]
+==
+<?
+
+    use Mrhili\Asociations\Models\Worker;
+
+    use Mrhili\Asociations\Models\Association;
+
+    function onStart(){
+
+        $this['cadres'] = Worker::where('confirmed', true)->get();
+        $this['associations'] = Association::where('confirmed', true)->get();
+
+    }
+
+?>
+==
+
+
+<div class="row">
+<div class="w-100">
+{% component 'new_event' cadres=cadres associations=associations %}
+</div>
+</div>

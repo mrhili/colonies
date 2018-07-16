@@ -1,0 +1,10 @@
+name: Kafa2a
+form: $/mrhili/asociations/models/kafa2a/fields.yaml
+modelClass: Mrhili\Asociations\Models\Kafa2a
+defaultRedirect: mrhili/asociations/kafa2a
+create:
+    redirect: 'mrhili/asociations/kafa2a/update/:id'
+    redirectClose: mrhili/asociations/kafa2a
+update:
+    redirect: mrhili/asociations/kafa2a
+    redirectClose: mrhili/asociations/kafa2a

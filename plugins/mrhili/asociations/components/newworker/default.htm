@@ -1,0 +1,255 @@
+{% flash success %}
+
+    
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+            
+
+{% endflash %}
+
+{{ form_open({ method: 'POST' , url:'new-cadre', files: true}) }}
+
+{{ form_token() }}
+
+
+{{ form_sessionKey() }}
+
+    <div class="form-group">
+        <input type="hidden" name="_handler" value="onSave"/>
+    </div>
+
+    <div class="form-group">
+        <label for="avatar">صورة</label>
+        <input
+            name="avatar"
+            type="file"
+            class="form-control"
+            id="avatar" />
+    </div>
+
+    <div class="form-group">
+        <label for="name">الإسم</label>
+        <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="الإسم" />
+    </div>
+
+    <div class="form-group">
+        <label for="last_name">الإسم</label>
+        <input
+            name="last_name"
+            type="text"
+            class="form-control"
+            id="last_name"
+            placeholder="النسب" />
+    </div>
+    <div class="form-group">
+        <label for="born_at">تاريخ الإزديايد</label>
+        <input
+            name="born_at"
+            type="date"
+            class="form-control"
+            id="born_at"
+            placeholder="تاريخ الإزديايد" />
+    </div>
+
+    <div class="form-group">
+        <label for="born_in">مكان الإزديايد</label>
+        <input
+            name="born_in"
+            type="text"
+            class="form-control"
+            id="born_in"
+            placeholder="مكان الإزديايد" />
+    </div>
+
+    <div class="form-group">
+        <label for="maried">الحالة العائلية</label>
+
+        <input type="radio" class="form-control"
+            id="maried" name="maried" value="1" checked> متزوج<br>
+        <input type="radio" class="form-control"
+            id="maried" name="maried" value="0"> عازب<br>
+        <input type="radio" class="form-control"
+            id="maried" name="maried" value="3"> مطلق
+
+
+
+    </div>
+
+    <div class="form-group">
+        <label for="level_study">المستوى الدراسي</label>
+        <input
+            name="level_study"
+            type="text"
+            class="form-control"
+            id="level_study"
+            placeholder="المستوى الدراسي" />
+    </div>
+
+    <div class="form-group">
+        <label for="field">المجال</label>
+        <input
+            name="field"
+            type="text"
+            class="form-control"
+            id="field"
+            placeholder="المجال" />
+    </div>
+
+    <div class="form-group">
+        <label for="cv">السيرة الذاتية</label>
+        <textarea class="editor" id="cv" class="richtext form-control" name="cv">
+            
+        </textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="kafa2as">الكفائات</label>
+        <select name="kafa2as"
+            class="form-control"
+            id="kafa2as" multiple>
+        {% for kafa2a in kafa2at %}
+
+            <option value="{{ kafa2a.id }}">{{ kafa2a.name }}</option>
+        {% endfor %}
+            
+        </select>
+
+    </div>
+
+    <div class="form-group">
+        <label for="work">العمل</label>
+        <input
+            name="work"
+            type="text"
+            class="form-control"
+            id="work"
+            placeholder="العمل" />
+    </div>
+
+
+    <div class="form-group">
+        <label for="tel">الهاتف</label>
+        <input
+            name="tel"
+            type="tel"
+            class="form-control"
+            id="tel"
+            placeholder="الهاتف" />
+    </div>
+
+    <div class="form-group">
+        <label for="email">إيميل</label>
+        <input
+            name="email"
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="إيميل" />
+    </div>
+
+
+
+
+
+    <div class="form-group">
+        <label for="region">المنطقة</label>
+        <input
+            name="region"
+            type="text"
+            class="form-control"
+            id="region"
+            placeholder="المنطقة" />
+    </div>
+
+    <div class="form-group">
+        <label for="city">المدينة</label>
+        <input
+            name="city"
+            type="text"
+            class="form-control"
+            id="city"
+            placeholder="المدينة" />
+    </div>
+
+    <div class="form-group">
+        <label for="adress">العنوان</label>
+        <input
+            name="adress"
+            type="text"
+            class="form-control"
+            id="adress"
+            placeholder="العنوان" />
+    </div>
+
+
+    <div class="form-group">
+        <label for="asociations">الجمعية</label>
+        <select name="asociations"
+            class="form-control"
+            id="asociations" multiple>
+        {% for assoc in associations %}
+
+            <option value="{{ assoc.id }}">{{ assoc.name }}</option>
+        {% endfor %}
+            
+        </select>
+
+    </div>
+
+    <div class="form-group">
+        <label for="events">مسؤوول عن أحات</label>
+        <select name="events"
+            class="form-control"
+            id="events" multiple>
+        {% for event in events %}
+
+            <option value="{{ event.id }}">{{ event.name }}</option>
+        {% endfor %}
+            
+        </select>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{ errors.first('name') }}
+
+
+    <button class="btn btn-indigo" type="submit" >حفظ</button>
+
+    <ul>
+        {% for error in errors.all() %}
+
+        <li>{{ error }}</li>
+
+
+        {% endfor %}
+    </ul>
+
+
+    {% flash success %}
+
+        <p>{{ message }}</p>
+
+    {% endflash %}
+    
+
+
+{{ form_close() }}

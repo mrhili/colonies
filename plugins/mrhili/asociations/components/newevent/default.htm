@@ -1,0 +1,187 @@
+
+
+{% flash success %}
+
+    
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+            
+
+{% endflash %}
+
+{{ form_open({ method: 'POST' , url:'new-event', files: true}) }}
+
+{{ form_token() }}
+
+
+{{ form_sessionKey() }}
+
+	<div class="form-group">
+		<input type="hidden" name="_handler" value="onSave"/>
+	</div>
+
+    <div class="form-group">
+        <label for="association">الجمعية</label>
+        <select name="association"
+            class="form-control"
+            id="association">
+        {% for assoc in associations %}
+
+            <option value="{{ assoc.id }}">{{ assoc.name }}</option>
+        {% endfor %}
+            
+        </select>
+
+    </div>
+
+	<div class="form-group">
+        <label for="poster">صورة</label>
+        <input
+            name="poster"
+            type="file"
+            class="form-control"
+            id="poster" />
+    </div>
+
+	<div class="form-group">
+        <label for="name">الإسم</label>
+        <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="الإسم" />
+    </div>
+
+    <div class="form-group">
+        <label for="name">إسم الرابط</label>
+        <input
+            name="slug"
+            type="text"
+            class="form-control"
+            id="slug"
+            placeholder="إسم الرابط" />
+    </div>
+
+	<div class="form-group">
+        <label for="domain">المجال</label>
+        <textarea id="domain" class="richtext form-control" name="domain">
+        	
+        </textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="desc">عن الحت</label>
+        <textarea id="desc" class="richtext form-control" name="desc">
+            
+        </textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="start">تاريخ البدأ</label>
+        <input
+            name="start"
+            type="datetime-local"
+            class="form-control"
+            id="start"
+            placeholder="تاريخ البدأ" />
+    </div>
+
+    <div class="form-group">
+        <label for="end">تاريخ الإنتهاء</label>
+        <input
+            name="end"
+            type="datetime-local"
+            class="form-control"
+            id="end"
+            placeholder="تاريخ الإنتهاء" />
+    </div>
+
+
+    <div class="form-group">
+        <label for="region">المنطقة</label>
+        <input
+            name="region"
+            type="text"
+            class="form-control"
+            id="region"
+            placeholder="المنطقة" />
+    </div>
+
+    <div class="form-group">
+        <label for="city">المدينة</label>
+        <input
+            name="city"
+            type="text"
+            class="form-control"
+            id="city"
+            placeholder="المدينة" />
+    </div>
+
+    <div class="form-group">
+        <label for="adress">العنوان</label>
+        <input
+            name="adress"
+            type="text"
+            class="form-control"
+            id="adress"
+            placeholder="العنوان" />
+    </div>
+
+
+    <div class="form-group">
+        <label for="gallery">المعرض</label>
+        <input
+            name="gallery"
+            type="file"
+            class="form-control"
+            id="gallery"
+            multiple />
+    </div>
+
+    <div class="form-group">
+        <label for="tech_card">بطاقة تقنية</label>
+        <input
+            name="tech_card"
+            type="file"
+            class="form-control"
+            id="tech_card" />
+    </div>
+
+    <div class="form-group">
+        <label for="workers">المسؤولين</label>
+        <select multiple name="workers"
+            class="form-control"
+            id="workers">
+        {% for cadre in cadres %}
+
+            <option value="{{ cadre.id }}">{{ cadre.name }} {{ cadre.last_name }}</option>
+        {% endfor %}
+            
+        </select>
+
+    </div>
+
+
+
+	{{ errors.first('name') }}
+
+
+	<button class="btn btn-indigo" type="submit" >حفظ</button>
+
+	<ul>
+		{% for error in errors.all() %}
+
+		<li>{{ error }}</li>
+
+
+		{% endfor %}
+	</ul>
+
+
+	
+	
+
+
+{{ form_close() }}

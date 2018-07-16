@@ -1,0 +1,246 @@
+title = "event"
+url = "/event/:slug"
+layout = "basicLandingPage"
+is_hidden = 0
+
+[builderDetails]
+modelClass = "Mrhili\Asociations\Models\Event"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "slug"
+notFoundMessage = "لا يوجد"
+
+[viewBag]
+localeUrl[en] = "/event"
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+{% if record %}
+
+
+
+<!--Intro Section-->
+<section class="view intro-1 hm-black-slight" style="background: url('{{ record.poster.thumb(500, auto)  }}')no-repeat center center; background-size: cover;">
+    <div class="full-bg-img flex-center">
+        <div class="container">
+            <ul class="light-background">
+
+                <li>
+                	<img src="{{ record.asociation.logo.thumb(80,80) }}" />
+                    <h1 class="display-3 font-bold wow fadeInDown" data-wow-delay="0.2s">{{ record.name }}</h1>
+                </li>
+                <li>
+                    <!--<h4 class="mt-4 mb-5 wow fadeInDown">by {{ record.asociation.name }}</h4>-->
+                </li>
+                <li>
+                    
+                    <a target="_blank" href="/association/{{ record.asociation.id }}" class="btn btn-outline-white btn-lg wow fadeInRight"
+                        data-wow-delay="0.2s" rel="nofollow">الجمعية المسؤولة</a>
+                    <a target="_blank" href="/new-event" class="btn btn-indigo btn-lg wow fadeInLeft" data-wow-delay="0.2s"
+                        rel="nofollow">إضافة حدث</a>
+                </li>
+            </ul>
+
+            <ul class="light-background">
+
+                <li class="alert alert-primary">
+                    
+                   وقت بدء الحدث : {{ record.start }} ، وقت إنتهاءه : {{ record.end }}
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Main container-->
+<div class="container">
+
+
+    <div class="divider-new pt-5">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn" data-wow-delay="0.2s">
+            <strong>عن الحدث</strong>
+        </h2>
+    </div>
+    <!--Section: About-->
+    <section id="about" class="text-center wow fadeIn" data-wow-delay="0.2s">
+{{ record.desc|raw }}
+{% if record.tech_card %} <a target="" href="{{ record.tech_card.path }}" class="btn btn-indigo btn-lg" data-wow-delay="0.2s"
+                        rel="nofollow">تحميل البطاقة التقنية</a> {% endif %}
+
+    </section>
+
+    <div class="divider-new pt-5">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn" data-wow-delay="0.2s">
+            <strong>مجال الحدث</strong>
+        </h2>
+    </div>
+    <!--Section: About-->
+    <section id="about" class="text-center wow fadeIn" data-wow-delay="0.2s">
+{{ record.domain|raw }}
+    </section>
+
+
+
+    <!--Section: About-->
+
+
+    <div class="divider-new pt-5">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn">Gallery</h2>
+    </div>
+
+
+
+
+
+
+    <!--Section: Best features-->
+    <section id="best-features">
+
+        <div class="row pt-3">
+	{% for img in record.gallery %}
+            <div class="col-lg-3 mb-r">
+                <a href="">
+                    <!--Card-->
+                    <div class="card hoverable wow fadeIn">
+
+                        <!--Card image-->
+                        <img class="img-fluid"
+                             src="{{ img.thumb(200, auto) }}"
+                             alt="Card image cap">
+
+
+                    </div>
+                    <!--/.Card-->
+                    </a>
+            </div>
+
+	{% endfor %}
+        </div>
+
+    </section>
+    <!--/Section: Best features-->
+
+    <!--Section: About-->
+
+
+    <div class="divider-new pt-5">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold wow fadeIn">المسؤولين عن الحدث</h2>
+    </div>
+
+    <!--Section: Best features-->
+    <section id="best-features">
+
+        <div class="row pt-3">
+	{% for cadre in record.workers %}
+            <div class="col-lg-3 mb-r">
+                <a href="">
+                    <!--Card-->
+                    <div class="card hoverable wow fadeIn">
+
+                        <!--Card image-->
+                        <img class="img-fluid"
+                             src="{% if cadre.avatar %}{{ cadre.avatar.thumb(200,auto) }}{% else %}{{'assets/images/no-img.png'|theme}}{% endif%}"
+                             alt="Card image cap">
+						<div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title text-center">{{ cadre.name }} {{ cadre.last_name }}</h4>
+
+                            <a class="btn btn-indigo" href="/cadres/{{ cadre.id }}">المزيد</a>
+
+                        </div>
+
+                    </div>
+                    <!--/.Card-->
+                    </a>
+            </div>
+
+	{% endfor %}
+        </div>
+
+    </section>
+    <!--/Section: Best features-->
+
+
+
+    <div class="divider-new">
+        <h2 class="h2-responsive indigo-text mx-4 font-bold  wow fadeIn">Contact us</h2>
+    </div>
+
+    <!--Section: Contact-->
+    <section id="contact pb-5">
+        <div class="row">
+            <!--First column-->
+            <div class="col-md-8 mb-5">
+                <div class="embed-responsive embed-responsive-16by9 z-depth-1 wow fadeIn">
+                    CONTACT MAP
+                </div>
+            </div>
+            <!--/First column-->
+
+            <!--Second column-->
+            <div class="col-md-4">
+                <ul class="text-center list-unstyled">
+                    <li class="wow fadeIn" data-wow-delay="0.2s">
+                        <i class="fa fa-map-marker indigo-text fa-2x"></i>
+                        <p>{{ record.region }}</p>
+                        <hr />
+                        <p>{{ record.city }}</p>
+                        <hr />
+                        <p>{{ record.adress }}</p>
+                    </li>
+                </ul>
+            </div>
+            <!--/Second column-->
+        </div>
+    </section>
+    <!--Section: Contact-->
+</div>
+<!--/ Main container-->
+
+<script>
+function myMap() {
+var mapOptions = {
+    center: new google.maps.LatLng(51.5, -0.12),
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+}
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+{% else %}
+
+<!--Intro Section-->
+<section class="view intro-1 hm-black-slight" style="background: url('https://mdbootstrap.com/img/Photos/Others/images/59.jpg')no-repeat center center; background-size: cover;">
+    <div class="full-bg-img flex-center">
+        <div class="container">
+            <ul>
+                <li>
+                    <h1 class="display-3 font-bold wow fadeInDown" data-wow-delay="0.2s">{{ notFoundMessage }}</h1>
+                </li>
+                <li>
+                    <h4 class="mt-4 mb-5 wow fadeInDown">Digital advertising agency focused on today's consumers</h4>
+                </li>
+                <li>
+                    <a target="_blank" href="{{ btn1Link }}" class="btn btn-indigo btn-lg wow fadeInLeft" data-wow-delay="0.2s"
+                        rel="nofollow">LEARN MORE</a>
+                    <a target="_blank" href="{{ btn2Link }}" class="btn btn-outline-white btn-lg wow fadeInRight"
+                        data-wow-delay="0.2s" rel="nofollow"> S  UP</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+{% endif %}

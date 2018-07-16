@@ -1,0 +1,96 @@
+fields:
+    avatar:
+        label: 'Image profile'
+        mode: image
+        imageWidth: '200'
+        imageHeight: '200'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload
+    name:
+        label: Prenom
+        span: auto
+        type: text
+    last_name:
+        label: Nom
+        span: auto
+        type: text
+    born_at:
+        label: 'Date de naissance'
+        mode: date
+        span: auto
+        type: datepicker
+    born_in:
+        label: 'Place de naissance'
+        span: auto
+        type: text
+    maried:
+        label: 'Cituation familialle'
+        span: auto
+        attributes:
+            - Célibataire
+            - Marié
+            - Divorcé
+        type: dropdown
+    level_study:
+        label: 'Niveau scolaire'
+        span: auto
+        type: text
+    field:
+        label: Field
+        span: auto
+        type: text
+    work:
+        label: Travail
+        span: auto
+        type: text
+    tel:
+        label: Téléphone
+        span: auto
+        type: text
+    email:
+        label: Email
+        span: auto
+        type: text
+    region:
+        label: Region
+        span: auto
+        type: text
+    city:
+        label: Ville
+        span: auto
+        type: text
+    adress:
+        label: Adresse
+        span: auto
+        type: text
+    asociations:
+        label: Associations
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation
+    events:
+        label: Evenements
+        nameFrom: name
+        descriptionFrom: name
+        span: auto
+        type: relation
+    confirmed:
+        label: Confirmation
+        span: auto
+        type: switch
+    cv:
+        label: CV
+        size: ''
+        span: auto
+        type: richeditor
+    kafa2as:
+        label: Kafa2at
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation

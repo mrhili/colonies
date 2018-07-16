@@ -1,0 +1,4 @@
+title: Events
+modelClass: Mrhili\Asociations\Models\Event
+toolbar:
+    buttons: reorder_toolbar

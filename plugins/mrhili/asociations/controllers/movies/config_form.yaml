@@ -1,0 +1,10 @@
+name: Movies
+form: $/mrhili/asociations/models/association/fields.yaml
+modelClass: Mrhili\Asociations\Models\Association
+defaultRedirect: mrhili/asociations/movies
+create:
+    redirect: 'mrhili/asociations/movies/update/:id'
+    redirectClose: mrhili/asociations/movies
+update:
+    redirect: mrhili/asociations/movies
+    redirectClose: mrhili/asociations/movies

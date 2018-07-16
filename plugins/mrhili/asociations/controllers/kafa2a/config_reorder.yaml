@@ -1,0 +1,4 @@
+title: Kafa2a
+modelClass: Mrhili\Asociations\Models\Kafa2a
+toolbar:
+    buttons: reorder_toolbar

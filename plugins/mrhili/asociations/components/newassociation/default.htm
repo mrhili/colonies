@@ -1,0 +1,127 @@
+
+{% flash success %}
+
+    
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+            
+
+{% endflash %}
+{{ form_open({ method: 'POST' , url:'new-assoc', files: true}) }}
+
+{{ form_token() }}
+
+
+{{ form_sessionKey() }}
+
+	<div class="form-group">
+		<input type="hidden" name="_handler" value="onSave"/>
+	</div>
+
+	<div class="form-group">
+        <label for="poster">صورة</label>
+        <input
+            name="poster"
+            type="file"
+            class="form-control"
+            id="poster" />
+    </div>
+
+	<div class="form-group">
+        <label for="name">الإسم</label>
+        <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="الإسم" />
+    </div>
+
+    <div class="form-group">
+        <label for="name">إسم الرابط</label>
+        <input
+            name="slug"
+            type="text"
+            class="form-control"
+            id="slug"
+            placeholder="إسم الرابط" />
+    </div>
+
+	<div class="form-group">
+        <label for="domaine">المجال</label>
+        <textarea id="domaine" class="richtext form-control" name="domaine">
+        	
+        </textarea>
+    </div>
+
+
+    <div class="form-group">
+        <label for="region">المنطقة</label>
+        <input
+            name="region"
+            type="text"
+            class="form-control"
+            id="region"
+            placeholder="المنطقة" />
+    </div>
+
+    <div class="form-group">
+        <label for="city">المدينة</label>
+        <input
+            name="city"
+            type="text"
+            class="form-control"
+            id="city"
+            placeholder="المدينة" />
+    </div>
+
+    <div class="form-group">
+        <label for="adresse">العنوان</label>
+        <input
+            name="adresse"
+            type="text"
+            class="form-control"
+            id="adresse"
+            placeholder="العنوان" />
+    </div>
+
+    <div class="form-group">
+        <label for="tel">الهاتف</label>
+        <input
+            name="tel"
+            type="tel"
+            class="form-control"
+            id="tel"
+            placeholder="الهاتف" />
+    </div>
+
+    <div class="form-group">
+        <label for="email">إيميل</label>
+        <input
+            name="email"
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="إيميل" />
+    </div>
+
+	{{ errors.first('name') }}
+
+
+	<button class="btn btn-indigo" type="submit" >حفظ</button>
+
+	<ul>
+		{% for error in errors.all() %}
+
+		<li>{{ error }}</li>
+
+
+		{% endfor %}
+	</ul>
+
+
+
+
+
+{{ form_close() }}

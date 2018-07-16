@@ -1,0 +1,4 @@
+title: Workers
+modelClass: Mrhili\Asociations\Models\Worker
+toolbar:
+    buttons: reorder_toolbar

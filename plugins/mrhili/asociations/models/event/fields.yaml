@@ -1,0 +1,92 @@
+fields:
+    association:
+        label: Association
+        span: full
+        nameFrom: name
+        descriptionFrom: description
+        emptyOption: 'Selectionne une assocation'
+        type: relation
+    poster:
+        label: Poster
+        mode: image
+        imageWidth: '500'
+        imageHeight: '500'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload
+    name:
+        label: 'Nom d''association'
+        span: auto
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text
+    domain:
+        label: Domain
+        size: ''
+        span: full
+        type: richeditor
+    start:
+        label: 'Date de debut'
+        mode: datetime
+        span: auto
+        type: datepicker
+    end:
+        label: 'Date de fin'
+        mode: datetime
+        span: auto
+        type: datepicker
+    region:
+        label: Region
+        span: auto
+        type: text
+    city:
+        label: Ville
+        span: auto
+        type: text
+    adress:
+        label: Adresse
+        span: full
+        type: text
+    desc:
+        label: Description
+        span: full
+        size: ''
+        type: richeditor
+    tech_card:
+        label: 'Fiche technique'
+        mode: file
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: full
+        type: fileupload
+    gallery:
+        label: Gallery
+        span: full
+        mode: image
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        imageWidth: '500'
+        imageHeight: '500'
+        type: fileupload
+    workers:
+        label: Cadres
+        span: auto
+        nameFrom: name
+        descriptionFrom: name
+        type: relation
+    confirmed:
+        label: Switch
+        span: auto
+        type: switch

@@ -1,0 +1,5 @@
+columns:
+    name:
+        label: Kafa2a
+        type: text
+        searchable: true

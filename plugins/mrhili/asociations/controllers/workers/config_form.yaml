@@ -1,0 +1,10 @@
+name: Workers
+form: $/mrhili/asociations/models/worker/fields.yaml
+modelClass: Mrhili\Asociations\Models\Worker
+defaultRedirect: mrhili/asociations/workers
+create:
+    redirect: 'mrhili/asociations/workers/update/:id'
+    redirectClose: mrhili/asociations/workers
+update:
+    redirect: mrhili/asociations/workers
+    redirectClose: mrhili/asociations/workers

@@ -1,0 +1,34 @@
+{
+  "name": "marocolonie",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">     <img src=\"https://github.com/octobercms/october/blob/master/themes/demo/assets/images/october.png?raw=true\" alt=\"October\" width=\"25%\" height=\"25%\" /> </p>",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrhili/marocolonie.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrhili/marocolonie/issues"
+  },
+  "homepage": "https://github.com/mrhili/marocolonie#readme",
+  "devDependencies": {
+    "browser-sync": "^2.24.4",
+    "browser-sync-webpack-plugin": "^2.0.1",
+    "laravel-mix": "^2.1.11",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0"
+  }
+}

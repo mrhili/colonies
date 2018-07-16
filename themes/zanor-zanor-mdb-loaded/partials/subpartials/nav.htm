@@ -1,0 +1,51 @@
+			<li class="nav-item {%if this.page.id == 'posts' %}active{% endif %}">
+                <a class="nav-link" href="/posts">المدونة</a>
+            </li>
+            <li class="nav-item {%if this.page.id == 'about' %}active{% endif %}">
+                <a class="nav-link" href="/about">من نحن</a>
+            </li>
+
+			<li class="nav-item {%if this.page.id == 'associations' %}active{% endif %}">
+                <a class="nav-link" href="/associations">الجمعيات</a>
+            </li>
+
+            <li class="nav-item {%if this.page.id == 'new_association' %}active{% endif %}">
+                <a class="nav-link" href="/new-assoc">إقتراح جمعية</a>
+            </li>
+
+            <li class="nav-item {%if this.page.id == 'workers' %}active{% endif %}">
+                <a class="nav-link" href="/cadres">الأعضاء</a>
+            </li>
+
+            <li class="nav-item {%if this.page.id == 'new_worker' %}active{% endif %}">
+                <a class="nav-link" href="/new-cadre">إقتراح عضو</a>
+            </li>
+
+            <li class="nav-item {%if this.page.id == 'events' %}active{% endif %}">
+                <a class="nav-link" href="/events">الأحداث</a>
+            </li>
+
+            <li class="nav-item {%if this.page.id == 'new_event' %}active{% endif %}">
+                <a class="nav-link" href="{{new_event|page}}">إقتراح حدث</a>
+            </li>
+            <li class="nav-item {%if this.page.id == 'contact-us' %}active{% endif %}">
+                <a class="nav-link" href="/contact-us">راسلنا</a>
+            </li>
+
+
+            {#
+            
+            {% if user %}
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-request="onLogout" data-request-data="redirect: '/'">خروج</a>
+            </li>
+            {% else %}
+
+            <li class="nav-item {%if this.page.id == 'login' %}active{% endif %}">
+                <a class="nav-link" href="/login">دخول / التسجيل</a>
+            </li>
+
+            {% endif %}
+
+
+            #}

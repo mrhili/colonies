@@ -1,0 +1,21 @@
+columns:
+    name:
+        label: Nom
+        type: text
+        searchable: true
+    start:
+        label: 'Date debut'
+        type: datetime
+        sortable: true
+    end:
+        label: 'Date fin'
+        type: datetime
+        sortable: true
+    city:
+        label: Ville
+        type: text
+        searchable: true
+        sortable: true
+    confirmed:
+        label: Confirmation
+        type: switch

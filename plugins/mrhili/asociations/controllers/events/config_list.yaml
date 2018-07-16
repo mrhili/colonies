@@ -1,0 +1,12 @@
+list: $/mrhili/asociations/models/event/columns.yaml
+modelClass: Mrhili\Asociations\Models\Event
+title: Events
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'mrhili/asociations/events/update/:id'

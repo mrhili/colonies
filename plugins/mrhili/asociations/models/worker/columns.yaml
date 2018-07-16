@@ -1,0 +1,39 @@
+columns:
+    name:
+        label: Prenom
+        type: text
+        searchable: true
+    last_name:
+        label: Nom
+        type: text
+        searchable: true
+    born_at:
+        label: Née
+        type: date
+        sortable: true
+    level_study:
+        label: 'Niveaau scolaire'
+        type: text
+    field:
+        label: Field
+        type: text
+        sortable: false
+    tel:
+        label: Tlephone
+        type: text
+    email:
+        label: Email
+        type: text
+    city:
+        label: Ville
+        type: text
+        sortable: true
+    confirmed:
+        label: Confirmation
+        type: switch
+        sortable: true
+    work:
+        label: Travail
+        type: text
+        searchable: true
+        sortable: true

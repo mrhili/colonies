@@ -1,0 +1,20 @@
+title = "testCategories"
+url = "/categories"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/categories"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 1
+categoryPage = "category"
+==
+{% if blogCategories.categories %}
+    <ul class="category-list">
+        {% partial blogCategories ~ "::items"
+            categories = blogCategories.categories
+            currentCategorySlug = blogCategories.currentCategorySlug
+        %}
+    </ul>
+{% endif %}

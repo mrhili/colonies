@@ -1,0 +1,92 @@
+title = "cadres"
+url = "/cadres/:pages?"
+layout = "cards"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/cadres"
+
+
+==
+
+<?
+
+    use Mrhili\Asociations\Models\Worker;
+
+    function onStart(){
+
+        $this['workers'] = Worker::where('confirmed', true)->paginate(12);
+
+    }
+
+?>
+
+==
+
+		<div class="jumbotron">
+          <h1 class="display-4">جميع الأعضاء الموجودة في الموقع</h1>
+          <hr class="my-4">
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/new-cadre" role="button">إضافة عضو</a>
+          </p>
+        </div>
+
+        
+        <!--Second row-->
+        <div class="row mt-5 pt-4">
+            {% for record in workers %}
+            <!--First columnn-->
+            <div class="col-lg-4">
+                <!--Card-->
+                <div class="card mb-r wow fadeIn" data-wow-delay="0.2s">
+
+                    <!--Card image-->
+                    <img class="img-fluid" src="{% if record.avatar %}{{ record.avatar.thumb(200,auto) }}{% else %}{{'assets/images/no-img.png'|theme}}{% endif%}" alt="Card image cap">
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">
+                            <strong>{{ record.name }} {{ record.last_name }}</strong>
+                        </h4>
+                        <!--Text-->
+                        <p class="card-text text-center">
+                        	المدينة :
+                        	<br />
+                        	<span style="direction:ltr">{{ record.city }}</span>
+                        </p>
+
+                        {# Use spaceless tag to remove spaces inside the A tag. #}
+                        {% spaceless %}
+                                <a class="btn btn-blue-grey btn-md" href="/cadre/{{ record.id }}">
+                                More
+                                </a>
+                        {% endspaceless %}
+                    </div>
+
+                </div>
+                <!--/.Card-->
+            </div>
+            <!--First columnn-->
+
+
+
+            {% else %}
+
+
+                <div class="alert alert-info" role="alert">
+				لايوجد
+				</div>
+
+
+            {% endfor %}
+        </div>
+        
+
+
+{% if workers.render %}
+<nav>
+    {{ workers.render|raw}}
+</nav>
+
+{% endif %}

@@ -1,0 +1,80 @@
+description = "Cards"
+
+
+[staticPage]
+useContent = 1
+default = 0
+[session]
+security = "all"
+==
+<?php
+function onStart()
+{
+    $this->addCss('assets/css/jumbotron.css');
+}
+?>
+==
+
+
+{% partial 'site/head' %}
+{% partial 'site/nav' %}
+
+<main>
+
+
+    <!--Main layout-->
+    <div class="container">
+
+
+        {% page %}
+
+
+
+{#
+            <!--Pagination dark grey-->
+                {% if posts.lastPage > 1 %}
+                    <!--Pagination-->
+                    <nav>
+                        <ul class="pagination d-flex justify-content-center pg-primary wow fadeIn" data-wow-delay="0.2s">
+                            <!--Arrow left-->
+                            {% if posts.currentPage > 1 %}
+                            <li class="page-item">
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage-1) }) }}" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {% endif %}
+
+
+                            <!--Numbers-->
+                            {% for page in 1..posts.lastPage %}
+                            <li class="page-item {{ posts.currentPage == page ? 'active' : null }}">
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}" class="page-link">{{ page }}</a>
+                            </li>
+                            {% endfor %}
+                            
+
+                            {% if posts.lastPage > posts.currentPage %}
+                            <!--Arrow right-->
+                            <li class="page-item">
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage+1) }) }}" class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    <!--/.Pagination-->
+                {% endif %}
+        <!--/Pagination dark grey-->
+
+#}
+
+
+    </div>
+    <!--/.Main layout-->
+</main>
+
+{% partial 'site/footer' %}

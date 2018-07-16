@@ -1,0 +1,83 @@
+title = "events"
+url = "/events/:page?"
+layout = "cards"
+is_hidden = 0
+
+
+
+[viewBag]
+localeUrl[en] = "/events"
+==
+
+<?
+
+    use Mrhili\Asociations\Models\Event;
+
+    function onStart(){
+
+        $this['events'] = Event::where('confirmed', true)->paginate(12);
+
+    }
+
+?>
+
+==
+
+        <div class="jumbotron">
+          <h1 class="display-4">جميع الأحداث الموجودة في الموقع</h1>
+          <hr class="my-4">
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/new-event" role="button">إضافة حدث</a>
+          </p>
+        </div>
+
+        
+        <!--Second row-->
+        <div class="row mt-5 pt-4">
+            {% for record in events %}
+            <!--First columnn-->
+            <div class="col-lg-4">
+                <!--Card-->
+                <div class="card mb-r wow fadeIn" data-wow-delay="0.2s">
+
+                    <!--Card image-->
+                    <img class="img-fluid" src="{% if record.poster%}{{ record.poster.thumb(200,auto) }}{% else %}{{'assets/images/no-img.png'|theme}}{% endif%}" alt="Card image cap">
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">
+                            <strong>{{ record.name }}</strong>
+                        </h4>
+                        <!--Text-->
+                        <p class="card-text">{{ html_limit(record.desc, 180)|raw }} ...</p>
+
+                        {# Use spaceless tag to remove spaces inside the A tag. #}
+                        {% spaceless %}
+                                <a class="btn btn-blue-grey btn-md" href="event/{{ record.slug}}">
+                                المزيد
+                                </a>
+                        {% endspaceless %}
+                    </div>
+
+                </div>
+                <!--/.Card-->
+            </div>
+            <!--First columnn-->
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                لايوجد
+                </div>
+
+
+            {% endfor %}
+        </div>
+        
+
+
+{% if events.render %}
+<nav>
+    {{ events.render|raw}}
+</nav>
+
+{% endif %}

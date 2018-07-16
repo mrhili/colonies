@@ -1,0 +1,269 @@
+title = "posts"
+url = "/posts/:page?"
+layout = "noSidebar"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/posts"
+
+[blogPosts]
+pageNumber = "{{ :page }}"
+postsPerPage = 20
+noPostsMessage = "No posts found"
+sortOrder = "published_at desc"
+categoryPage = "category"
+postPage = "post"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 1
+categoryPage = "category"
+==
+{% set posts = blogPosts.posts %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<main>
+    <!--Main layout-->
+    <div class="container">
+        <div class="row">
+
+            <!--Main column-->
+            <div class="col-lg-8">
+
+
+                {% for post in posts %}
+                    <!--Post-->
+
+                    <div class="post-wrapper wow fadeIn" data-wow-delay="0.{{ loop.index }}s">
+                        <!--Post data-->
+                        <h1 class="h1-responsive dark-grey-text font-bold">{{ post.title }}
+                            <small class="text-muted">...</small>
+                        </h1>
+                        <h6>Written by
+                            <a href="">
+                                <strong>John Doe</strong>
+                            </a>, {{ post.published_at|date('M d, Y') }}</h6>
+
+                        <br>
+
+
+
+
+                        {% if post.featured_images.count %}
+
+                        <!--Featured image -->
+                        <div class="view overlay hm-white-light z-depth-1-half rounded">
+
+
+                               {% for image in post.featured_images|slice(0, 1) %}
+                                  <a href="{{ image.path }}">
+                                     <img data-src="{{ image.filename }}" src="{{ image.path }}" class="img-fluid" alt="{{ image.description != null ? image.description : image.filename }}" title="{{ image.title != null ? image.title : post.title }}">
+                                  </a>
+                                  <div class="mask">
+                               {% endfor %}
+                            
+                            </div>
+                        </div>
+
+                         {% endif %}
+
+
+
+
+
+
+
+
+
+                        <br>
+
+                        <!--Post excerpt-->
+                        <p>{{ post.summary|raw }}</p>
+                        {% if post.categories.count %} categories: {% endif %}
+                        {% for category in post.categories %}
+                            <a href="{{ category.url }}" class="badge badge-primary">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                        <br />
+                        <!--"Read more" button-->
+                        <a href="{{ post.url }}" class="btn btn-blue btn-md">Read more</a>
+                    </div>
+                    <!--/.Post-->
+                    <hr class="mt-5">
+
+                {% else %}
+                    <div class="post-wrapper wow fadeIn" data-wow-delay="0.2s">
+                        <h1 class="h1-responsive dark-grey-text font-bold">{{ noPostsMessage }}
+                            <small class="text-muted">...</small>
+                        </h1>
+                    </div>
+                {% endfor %}
+
+
+
+
+                {% if posts.lastPage > 1 %}
+                    <!--Pagination-->
+                    <nav>
+                        <ul class="pagination d-flex justify-content-center pg-primary wow fadeIn" data-wow-delay="0.2s">
+                            <!--Arrow left-->
+                            {% if posts.currentPage > 1 %}
+                            <li class="page-item">
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage-1) }) }}" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {% endif %}
+
+
+                            <!--Numbers-->
+                            {% for page in 1..posts.lastPage %}
+                            <li class="page-item {{ posts.currentPage == page ? 'active' : null }}">
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}" class="page-link">{{ page }}</a>
+                            </li>
+                            {% endfor %}
+                            
+
+                            {% if posts.lastPage > posts.currentPage %}
+                            <!--Arrow right-->
+                            <li class="page-item">
+                                <a href="{{ this.page.baseFileName|page({ (pageParam): (posts.currentPage+1) }) }}" class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    <!--/.Pagination-->
+                {% endif %}
+            </div>
+
+            <!--Sidebar-->
+            <div class="col-lg-4">
+
+                <div class="widget-wrapper wow fadeIn" data-wow-delay="0.4s">
+                    <h4 class="font-bold dark-grey-text">تصنيفات :</h4>
+                    <br>
+                    <div class="list-group">
+
+
+{% if blogCategories.categories %}
+    <ul class="category-list">
+        {% partial blogCategories ~ "::items"
+            categories = blogCategories.categories
+            currentCategorySlug = blogCategories.currentCategorySlug
+        %}
+    </ul>
+{% endif %}
+<!--
+                        <a href="#" class="list-group-item">Lifestyle</a>
+                        <a href="#" class="list-group-item">Music</a>
+                        <a href="#" class="list-group-item">Travels</a>
+                        <a href="#" class="list-group-item">Fashion</a>
+                        <a href="#" class="list-group-item">Parties</a>
+
+                        -->
+                    </div>
+                </div>
+<!--
+                <div class="widget-wrapper wow fadeIn" data-wow-delay="0.6s">
+                    <h4 class="font-bold dark-grey-text">Subscription form:</h4>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <p>
+                                <strong>Subscribe to our newsletter</strong>
+                            </p>
+                            <p>Once a week we will send you a summary of the most useful news</p>
+                            <div class="md-form">
+                                <i class="fa fa-user prefix grey-text"></i>
+                                <input type="text" id="form1" class="form-control">
+                                <label for="form1">Your name</label>
+                            </div>
+                            <div class="md-form">
+                                <i class="fa fa-envelope prefix grey-text"></i>
+                                <input type="text" id="form2" class="form-control">
+                                <label for="form2">Your email</label>
+                            </div>
+                            <button class="btn btn-blue btn-md">Submit</button>
+
+                        </div>
+                    </div>
+                </div>
+-->
+                <!-- Archieve 
+                <section class="wow fadeIn" data-wow-delay="0.4s">
+                    <h4 class="font-bold dark-grey-text mb-3">Archieve</h4>
+                    
+                    <ul class="list mt-3">
+                        <li>
+                            <h6 class="">
+                                <a href="#!" class="grey-text">August 2016</a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6 class="">
+                                <a href="#!" class="grey-text">July 2016</a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6 class="">
+                                <a href="#!" class="grey-text">June 2016</a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6 class="">
+                                <a href="#!" class="grey-text">May 2016</a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6 class="">
+                                <a href="#!" class="grey-text">April 2016</a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6 class="">
+                                <a href="#!" class="grey-text">March 2016</a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6 class="mb-4">
+                                <a href="#!" class="grey-text">Febuary 2016</a>
+                            </h6>
+                        </li>
+                    </ul>
+                    
+
+                    <hr>
+
+                </section>
+                -->
+                <!-- Archieve -->
+
+            </div>
+            <!--/.Sidebar-->
+        </div>
+    </div>
+    <!--/.Main layout-->
+</main>

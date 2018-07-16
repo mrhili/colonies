@@ -1,0 +1,5 @@
+fields:
+    name:
+        label: Kafa2a
+        span: auto
+        type: text

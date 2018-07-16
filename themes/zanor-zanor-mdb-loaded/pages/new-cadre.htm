@@ -1,0 +1,37 @@
+title = "new-cadre"
+url = "/new-cadre"
+layout = "noSidebar"
+is_hidden = 0
+
+[viewBag]
+localeUrl[en] = "/new-cadre"
+
+[new_worker]
+==
+<?
+
+    use Mrhili\Asociations\Models\Event;
+
+    use Mrhili\Asociations\Models\Kafa2a;
+
+    use Mrhili\Asociations\Models\Association;
+
+    function onStart(){
+
+        $this['events'] = Event::where('confirmed', true)->get();
+        $this['associations'] = Association::where('confirmed', true)->get();
+        $this['kafa2at'] = Kafa2a::all();
+
+    }
+
+?>
+==
+
+
+<div class="row">
+	<div class="w-100">
+		{% component 'new_worker' events=events associations=associations kafa2at=kafa2at %}
+	</div>
+
+
+</div>
