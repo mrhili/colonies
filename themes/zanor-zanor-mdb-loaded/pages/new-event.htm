@@ -24,9 +24,32 @@ localeUrl[en] = "/new-event"
 ?>
 ==
 
+<script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
 
 <div class="row">
 <div class="w-100">
 {% component 'new_event' cadres=cadres associations=associations %}
 </div>
 </div>
+
+<script>
+            CKEDITOR.config.contentsLangDirection = 'rtl';
+            CKEDITOR.config.contentsLanguage = 'ar';
+            
+            CKEDITOR.replace( 'domain' );
+            CKEDITOR.replace( 'desc' );
+</script>
+
+{% put scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+
+            $(document).ready(function() {
+                $('.multiple').select2({
+                    placeholder: "إختر من المعلومات المسجلة أو سجلها أو أتركها فارغة",
+                    dir: "rtl"
+                });
+            });
+</script>
+
+{% endput %}

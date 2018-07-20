@@ -26,7 +26,12 @@ localeUrl[en] = "/new-cadre"
 
 ?>
 ==
+{% put styles %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+{% endput %}
 
+
+<script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
 
 <div class="row">
 	<div class="w-100">
@@ -35,3 +40,27 @@ localeUrl[en] = "/new-cadre"
 
 
 </div>
+
+
+<script>
+            CKEDITOR.config.contentsLangDirection = 'rtl';
+            CKEDITOR.config.contentsLanguage = 'ar';
+
+            CKEDITOR.replace( 'cv' );
+
+
+</script>
+
+{% put scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+
+            $(document).ready(function() {
+                $('.multiple').select2({
+                    placeholder: "إختر من المعلومات المسجلة أو سجلها أو أتركها فارغة",
+                    dir: "rtl"
+                });
+            });
+</script>
+
+{% endput %}
